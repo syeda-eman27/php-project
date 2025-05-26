@@ -24,6 +24,7 @@ if(isset($_POST['btnSave'])){
     //     echo "Error: " . mysqli_error($conn);
     // }
 }
+ unset($_POST['btnSave']);
 ?>
 
 <!-- Your existing HTML form here -->

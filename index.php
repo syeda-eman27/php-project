@@ -6,6 +6,7 @@ if(isset($_POST['btnSave'])){
     $MobPrice = $_POST['mobprice'];
     $MobQunatity = $_POST['mobQunat'];
     $Mobdesc = $_POST['mobdesc'];
+    $MobCateg = $_POST['mobCateg'];
     $mobimgName = $_FILES['mobimg']['name'];
     $mobtempName = $_FILES['mobimg']['tmp_name'];
     $TargetDirectry = "./img/";
@@ -13,8 +14,8 @@ if(isset($_POST['btnSave'])){
     
     move_uploaded_file($mobtempName, $imgPath);
     
-    $sql = "INSERT INTO mobiles (MobileName, MobilePrice, MobileQuantity, MobileDesc, MonImgPath) 
-            VALUES ('$Mobname', '$MobPrice', '$MobQunatity', '$Mobdesc', '$imgPath')";
+    $sql = "INSERT INTO mobiles (MobileName, MobilePrice, MobileQuantity, MobileDesc, MonImgPath, MonCatag) 
+            VALUES ('$Mobname', '$MobPrice', '$MobQunatity', '$Mobdesc', '$imgPath','$MobCateg')";
     $Query = mysqli_query($conn, $sql);
     
     // if($Query){
@@ -23,8 +24,9 @@ if(isset($_POST['btnSave'])){
     // } else {
     //     echo "Error: " . mysqli_error($conn);
     // }
+    
+    unset($_POST['btnSave']);
 }
- unset($_POST['btnSave']);
 ?>
 
 <!-- Your existing HTML form here -->
@@ -41,7 +43,18 @@ if(isset($_POST['btnSave'])){
                             <label for="mobname" class="form-label">Mobile Name:</label>
                             <input type="text" class="form-control" id="mobname" name="mobname" required>
                         </div>
-
+                        <div class="mb-3">
+                     <label for="mobCateg" class="form-label">Category:</label>
+                       <select class="form-select" id="mobCateg" name="mobCateg" required>
+                           <option value="" selected disabled>Select Category</option>
+                          <option value="Smartphone">Smartphone</option>
+                           <option value="Feature Phone">Feature Phone</option>
+                            <option value="Gaming Phone">Gaming Phone</option>
+                                <option value="Foldable">Foldable</option>
+                                  <option value="Budget">Budget</option>
+                                    <option value="Flagship">Flagship</option>
+                                  </select>
+                           </div>
                         <div class="mb-3">
                             <label for="mobprice" class="form-label">Price:</label>
                             <input type="number" class="form-control" id="mobprice" name="mobprice" required>

@@ -13,7 +13,6 @@ if(isset($_GET['id'])){
             unlink($imagePath); // Delete the image file
         }
     }
-
     // Now delete the record
     $sql = "DELETE FROM mobiles WHERE id = $id";
     $deleteQuery = mysqli_query($conn, $sql);
